@@ -11,3 +11,7 @@ async def get_user_id(user_id):
     dummy_user_data = User()
     #return {"message": "Retrieved data for user "+str(user_id)}
     return dummy_user_data
+
+@app.get("/")
+async def access_endpoint():
+    return {"message": "Hello World"}
