@@ -1,16 +1,6 @@
-
-Activate the pip env with this command to "turn on" your environment:
+Use this command to install your dependencies from the requirements.txt:
 ```
-pipenv shell
-```
-Use this command to install your dependencies from the pipfile:
-```
-pipenv install
-```
-
-Note: type this command to exit the virtual environment:
-```
-exit
+pip install -r requirements.txt
 ```
 
 Run this app with:
@@ -40,7 +30,7 @@ https://lcalcagni.medium.com/deploy-your-fastapi-to-aws-ec2-using-nginx-aa8aa0d8
 2. Wait for your EC2 instance to spin up. It will say if the health checks passed. If they passed, your instance spun up correctly.
 3. Log into your EC2 intance by doing an SSH command:
 ```
-ssh -i Downloads/fastapi-test.pem ubuntu@ec2-54-166-166-164.compute-1.amazonaws.com
+ssh -i Downloads/fastapi-test.pem ubuntu@ec2-52-91-207-169.compute-1.amazonaws.com
 ```
 Note:
 My key pair was called "fastapi-test.pem" and I ran this out of my root user location in Windows Command Prompt.
@@ -53,6 +43,7 @@ Clone your repo using:
 git clone https://github.com/13dnizinski/fast-api
 ```
 
+
 Navigate into that cloned directory:
 ```
 cd fast-api
@@ -60,58 +51,5 @@ cd fast-api
 
 Then install all the requirements to run the code:
 ```
-sudo apt-get update
-pip3 install pipenv
+pip3 install -r requirements.txt
 ```
-
-Then attempt to run the pipenv shell:
-```
-pipenv shell
-```
-^I got an error while running this:
-```
-AttributeError: module 'collections' has no attribute 'MutableMapping'
-```
-
-This happens because Python 3.9 isn't installed. To fix this error, run:
-```
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt install python3.9
-```
-
-Now activate pipenv with:
-```
-pipenv shell
-```
-
-Now, start up the server to serve those API endpoints to the world:
-```
-uvicorn main:app
-```
-
-
-Debug things to remove and reinstall pipenv:
-sudo apt remove pipenv
-pip3 install pipenv
-
-
-I got this error: "No such file or directory":
-```
-sudo apt-get remove python3-pipenv
-sudo pip3 install pipenv
-sudo apt-get remove python3-virtualenv
-sudo pip3 install virtualenv
-export PATH=$PATH:~/.local/bin/
-```
-Then you can run pipenv shell.
-
-THen I tried doing:
-```
-pipenv install
-```
-And I got this error message:
-```
-ResourceWarning: subprocess 4399 is still running
-```
-
-
