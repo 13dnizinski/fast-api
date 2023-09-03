@@ -32,6 +32,7 @@ Then use this command to kill the process based on the process ID (PID):
 taskkill /PID 11276 /F
 ```
 
+### How to deploy this onto an EC2:
 I followed this documentation to deploy this on an EC2:
 https://lcalcagni.medium.com/deploy-your-fastapi-to-aws-ec2-using-nginx-aa8aa0d85ec7
 
@@ -39,10 +40,11 @@ https://lcalcagni.medium.com/deploy-your-fastapi-to-aws-ec2-using-nginx-aa8aa0d8
 2. Wait for your EC2 instance to spin up. It will say if the health checks passed. If they passed, your instance spun up correctly.
 3. Log into your EC2 intance by doing an SSH command:
 ```
-ssh -i Downloads/fastapi-test.pem ubuntu@ec2-35-173-182-159.compute-1.amazonaws.com
+ssh -i Downloads/fastapi-test.pem ubuntu@ec2-54-166-166-164.compute-1.amazonaws.com
 ```
 Note:
 My key pair was called "fastapi-test.pem" and I ran this out of my root user location in Windows Command Prompt.
+The url after "ubuntu@" is the "" of the EC2 instance.
 
 4. Download your source code onto the EC2:
 
@@ -59,7 +61,6 @@ cd fast-api
 Then install all the requirements to run the code:
 ```
 sudo apt-get update
-sudo apt install pipenv
 pip3 install pipenv
 ```
 
@@ -86,6 +87,31 @@ pipenv shell
 Now, start up the server to serve those API endpoints to the world:
 ```
 uvicorn main:app
+```
+
+
+Debug things to remove and reinstall pipenv:
+sudo apt remove pipenv
+pip3 install pipenv
+
+
+I got this error: "No such file or directory":
+```
+sudo apt-get remove python3-pipenv
+sudo pip3 install pipenv
+sudo apt-get remove python3-virtualenv
+sudo pip3 install virtualenv
+export PATH=$PATH:~/.local/bin/
+```
+Then you can run pipenv shell.
+
+THen I tried doing:
+```
+pipenv install
+```
+And I got this error message:
+```
+ResourceWarning: subprocess 4399 is still running
 ```
 
 
