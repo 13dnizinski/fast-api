@@ -16,10 +16,9 @@ That's it. The app is now running locally. It's an API, so you can use Postman o
 2. Wait for your EC2 instance to spin up. It will say if the health checks passed. If they passed, your instance spun up correctly.
 3. Log into your EC2 intance by doing an SSH command:
 ```
-ssh -i Downloads/fastapi-test.pem ubuntu@3.92.127.114
+ssh -i Downloads/fastapi-test.pem ubuntu@52.87.210.37
 ```
 __Note:__
-
 __My key pair was called "fastapi-test.pem" and I ran this out of my root user location in Windows Command Prompt.__
 __The url after "ubuntu@" is the "Public IPv4 Address" of the EC2 instance.__
 
@@ -49,74 +48,16 @@ __This is the general way to run the startup script:__
 ```
 __For example, if my EC2 instance has the Public IPV4 Address "54.81.168.0", I would call it like:__
 ```
-./startup.sh 3.92.127.114
+./startup.sh 52.87.210.37
 ```
 
 
 
 
 
-
-
-
-Install all the requirements to run the code:
-```
-sudo apt-get update
-sudo apt install -y python3-pip nginx
-cd fast-api
-pip3 install -r requirements.txt
-```
-
-Now, we have some steps that will expose the endpoint over the internet:
-```
-cd
-cd /etc/nginx/sites-enabled/
-sudo nano fastapi_nginx
-```
-
-Paste this in the file that opens:
-```
-server {
-        listen 80;
-        server_name 54.198.9.22;
-        location / {
-                proxy_pass http://127.0.0.1:8000;
-        }
-}
-```
-
-Paste your instance's public ip address as the server_name field. Save the file.
-
-Run these in order:
-```
-sudo service nginx restart
-cd
-cd fast-api
-```
-
-Run the app with:
-```
-python3 -m uvicorn main:app --host 0.0.0.0
-```
-
-Now that your app is running, you need to go into AWS and modify the security group on your EC2 instance. Edit the Inbound Rules of the security group to use:
-Type: CustomTCP
-Port range: 8000 
-Source: Anywhere - IPV4
-
-Click "Save rules"
-
-
-The app is now running on the EC2 server. You can confirm by navigating to this url:
-```
-http:<your EC2's IP Address>:8000
-```
-
-
-
-FAQ:
-"Address is already in use: 8000"
-^For this, run this command to see the active port:
+### FAQ:
+####Question: I'm getting an error "Address is already in use: 8000". How do I fix it?
+For this, run this command to see the active port:
 ```
 sudo lsof -i
 ```
@@ -126,11 +67,11 @@ Then use this command to kill the process based on the process ID (PID). In this
 sudo kill -9 3200
 ```
 
-Where did you figure out how to do this?
+#### Question: What documentation did I follow to create the startup script?
 
 I went through this tutorial:
 https://lcalcagni.medium.com/deploy-your-fastapi-to-aws-ec2-using-nginx-aa8aa0d85ec7
 
-I'm sick of the IP address changing every time. What do I do?
+#### Question: I'm sick of the IP address changing every time. What do I do?
 AWS Elastic IP Addresses will keep your IP address consistent so that people calling your APIs (like the front-end) see the same thing every time, no matter what IP address your EC2 is actually using.
 You can set this up under "EC2" -> "Network and Security" -> "Elastic IPs"
