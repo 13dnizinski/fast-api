@@ -16,7 +16,7 @@ That's it. The app is now running locally. It's an API, so you can use Postman o
 2. Wait for your EC2 instance to spin up. It will say if the health checks passed. If they passed, your instance spun up correctly.
 3. Log into your EC2 intance by doing an SSH command:
 ```
-ssh -i Downloads/fastapi-test.pem ubuntu@54.81.168.0
+ssh -i Downloads/fastapi-test.pem ubuntu@3.92.127.114
 ```
 __Note:__
 
@@ -35,6 +35,11 @@ Give yourself access to run the startup script using this command:
 chmod -R 777 ./
 ```
 
+Navigate into the "fast-api" folder using:
+```
+cd fast-api
+```
+
 OPTIONAL: You can run this command to automatically pull the code from github, set up your EC2 instance, and expose the endpoints over the internet:
 Note: If it prompts you for anything, just press ENTER.
 
@@ -44,7 +49,7 @@ __This is the general way to run the startup script:__
 ```
 __For example, if my EC2 instance has the Public IPV4 Address "54.81.168.0", I would call it like:__
 ```
-./startup.sh 54.81.168.0
+./startup.sh 3.92.127.114
 ```
 
 
