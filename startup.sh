@@ -1,5 +1,3 @@
-git clone https://github.com/13dnizinski/fast-api
-
 sudo apt-get update
 sudo apt install -y python3-pip nginx
 cd fast-api
