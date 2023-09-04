@@ -30,11 +30,22 @@ Clone your repo using:
 git clone https://github.com/13dnizinski/fast-api
 ```
 
+Give yourself access to run the startup script using this command:
+```
+chmod -R 777 ./
+```
+
 OPTIONAL: You can run this command to automatically pull the code from github, set up your EC2 instance, and expose the endpoints over the internet:
-Note: You will need to configure the "server_name" field inside the "fastapi_nginx" file in the root of this repo.
+Note: If it prompts you for anything, just press ENTER.
 ```
-./startup.sh
+This is the general way to run the startup script:
+./startup.sh <The Public IPV4 address of the EC2>
+For example, if my EC2 instance has the Public IPV4 Address "54.81.168.0", I would call it like:
+./startup.sh 54.81.168.0
 ```
+
+
+
 
 Install all the requirements to run the code:
 ```

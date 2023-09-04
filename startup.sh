@@ -1,3 +1,7 @@
+PUBLIC_IPV4_ADDRESS="$1"
+sed -i 's/<paste_the_ec2_public_ipv4_address_here>/'PUBLIC_IPV4_ADDRESS'/g' fastapi_nginx
+
+cd
 sudo apt-get update
 sudo apt install -y python3-pip nginx
 cd fast-api
