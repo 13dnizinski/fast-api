@@ -1,2 +1,3 @@
 .idea
 fastapi_nginx
+__pycache__/
