@@ -37,12 +37,19 @@ chmod -R 777 ./
 
 OPTIONAL: You can run this command to automatically pull the code from github, set up your EC2 instance, and expose the endpoints over the internet:
 Note: If it prompts you for anything, just press ENTER.
+
+__This is the general way to run the startup script:__
 ```
-This is the general way to run the startup script:
 ./startup.sh <The Public IPV4 address of the EC2>
-For example, if my EC2 instance has the Public IPV4 Address "54.81.168.0", I would call it like:
+```
+__For example, if my EC2 instance has the Public IPV4 Address "54.81.168.0", I would call it like:__
+```
 ./startup.sh 54.81.168.0
 ```
+
+
+
+
 
 
 
